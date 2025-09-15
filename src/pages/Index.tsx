@@ -1,13 +1,40 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import HeroSection from "@/components/HeroSection";
+import AssessmentOverview from "@/components/AssessmentOverview";
 
 const Index = () => {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+  const [showAssessment, setShowAssessment] = useState(false);
+
+  const handleStartAssessment = () => {
+    setShowAssessment(true);
+    // TODO: Navigate to assessment flow
+    console.log("Starting assessment...");
+  };
+
+  if (showAssessment) {
+    return (
+      <div className="min-h-screen bg-gradient-subtle flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold mb-4">Assessment Coming Soon!</h1>
+          <p className="text-lg text-muted-foreground mb-6">
+            The full assessment interface is being built. This demonstrates the beautiful foundation we've created.
+          </p>
+          <button 
+            onClick={() => setShowAssessment(false)}
+            className="text-primary hover:underline"
+          >
+            ← Back to Overview
+          </button>
+        </div>
       </div>
-    </div>
+    );
+  }
+
+  return (
+    <main className="min-h-screen">
+      <HeroSection onStartAssessment={handleStartAssessment} />
+      <AssessmentOverview onStartAssessment={handleStartAssessment} />
+    </main>
   );
 };
 

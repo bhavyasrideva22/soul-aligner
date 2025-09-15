@@ -2,39 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* Professional Core Values Assessment Design System */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Brand Colors */
+    --background: 220 20% 98%;
+    --foreground: 220 15% 15%;
 
+    /* Trust & Wisdom Palette */
+    --primary: 210 100% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 210 100% 55%;
+    --primary-dark: 210 100% 35%;
+
+    /* Insight & Growth */
+    --secondary: 165 85% 40%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-light: 165 85% 50%;
+    
+    /* Wisdom & Clarity */
+    --accent: 280 60% 65%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Warm Purpose */
+    --warm: 25 100% 60%;
+    --warm-foreground: 0 0% 100%;
+    
+    /* Neutral Sophistication */
+    --muted: 220 15% 96%;
+    --muted-foreground: 220 15% 45%;
+    
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 220 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 220 15% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --border: 220 15% 90%;
+    --input: 220 15% 95%;
+    --ring: 210 100% 45%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-light)) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--secondary-light)) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(var(--warm)) 0%, hsl(var(--accent)) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 50%, hsl(var(--accent)) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
+    
+    /* Shadows & Effects */
+    --shadow-soft: 0 4px 20px -4px hsl(var(--primary) / 0.15);
+    --shadow-medium: 0 8px 30px -8px hsl(var(--primary) / 0.2);
+    --shadow-strong: 0 15px 50px -12px hsl(var(--primary) / 0.25);
+    --shadow-glow: 0 0 40px hsl(var(--primary) / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --radius: 0.5rem;
 
@@ -100,6 +126,79 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+  
+  /* Assessment-specific utilities */
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+  
+  .gradient-warm {
+    background: var(--gradient-warm);
+  }
+  
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .shadow-strong {
+    box-shadow: var(--shadow-strong);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+}
+
+@layer components {
+  /* Progress indicator styles */
+  .progress-step {
+    @apply w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-smooth;
+  }
+  
+  .progress-step.active {
+    @apply bg-primary text-primary-foreground shadow-medium;
+  }
+  
+  .progress-step.completed {
+    @apply bg-secondary text-secondary-foreground;
+  }
+  
+  .progress-step.inactive {
+    @apply bg-muted text-muted-foreground;
+  }
+  
+  /* Assessment card styles */
+  .assessment-card {
+    @apply bg-card rounded-xl border border-border p-6 shadow-soft transition-smooth hover:shadow-medium;
+  }
+  
+  .assessment-card.interactive {
+    @apply cursor-pointer hover:border-primary/50 hover:bg-primary/5;
+  }
+  
+  .assessment-card.selected {
+    @apply border-primary bg-primary/10 shadow-medium;
   }
 }
